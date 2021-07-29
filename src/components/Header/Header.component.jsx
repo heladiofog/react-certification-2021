@@ -4,7 +4,7 @@ import {
   HeaderContainer,
   BurgerMenuContainer,
   BurgerMenu,
-  LeftContainer,
+  LeftHeaderContainer,
 } from './Header.styled.component';
 import SearchBox from '../SearchBox';
 import UserSettings from '../UserSettings';
@@ -12,13 +12,13 @@ import UserSettings from '../UserSettings';
 function Header() {
   return (
     <HeaderContainer>
-      <LeftContainer>
+      <LeftHeaderContainer>
         <BurgerMenuContainer>
           <BurgerMenu color="white" />
         </BurgerMenuContainer>
-        <SearchBox />
-      </LeftContainer>
-      <UserSettings />
+        <SearchBox minWidth="600px" />
+      </LeftHeaderContainer>
+      <UserSettings minWidth="960px" />
     </HeaderContainer>
   );
 }

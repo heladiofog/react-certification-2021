@@ -6,10 +6,13 @@ import { UserCircle } from '@styled-icons/boxicons-solid/UserCircle';
 export const UserSettingsContainer = styled.div`
   /* background-color: rgba(255, 255, 255, 0.15); */
   height: 64px;
-  display: flex;
+  display: none;
   justify-content: flex-end;
   align-items: center;
   width: 100%;
+  @media only screen and (min-width: ${(props) => props.minWidth}) {
+    display: flex;
+  }
 `;
 
 export const ThemeSwitchContainer = styled.div`

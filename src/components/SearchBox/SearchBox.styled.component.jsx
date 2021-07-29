@@ -9,7 +9,10 @@ export const SearchBoxContainer = styled.div`
   justify-content: start;
   border-radius: 4px;
   padding-left: 16px;
-  width: auto;
+  width: 100%;
+  @media (min-width: ${(props) => props.minWidth}) {
+    width: auto;
+  }
 `;
 
 export const SearchInput = styled.input`

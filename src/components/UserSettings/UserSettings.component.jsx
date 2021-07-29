@@ -8,9 +8,9 @@ import {
 } from './UserSettings.styled.component';
 import { InputLabel } from '../../common/Element.styled';
 
-function UserSettings() {
+function UserSettings(props) {
   return (
-    <UserSettingsContainer>
+    <UserSettingsContainer minWidth={props.minWidth}>
       <ThemeSwitchContainer>
         <ThemeSwitch name="themeSwitch" />
       </ThemeSwitchContainer>

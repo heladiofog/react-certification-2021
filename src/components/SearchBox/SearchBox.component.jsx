@@ -5,9 +5,9 @@ import {
   SearchIcon,
 } from './SearchBox.styled.component';
 
-function SearchBox() {
+function SearchBox(props) {
   return (
-    <SearchBoxContainer>
+    <SearchBoxContainer minWidth={props.minWidth}>
       {/* Search Icon */}
       <SearchIcon />
       <SearchInput placeholder="Search..." />
