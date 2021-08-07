@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 // import { Link, useHistory } from 'react-router-dom';
 
 // import { useAuth } from '../../providers/Auth';
@@ -24,18 +24,39 @@ function HomePage() {
   // const [searchText, setSearchText] = useState('');
   // Google APi loading...
   const googleApi = useGoogleApi();
-  // Waiting for Google Api...if the case
-  if (!googleApi) {
-    console.log('no gapi!');
-    return <h2>Loading videos...</h2>;
-  }
+  // Load videos by default
+  const [videoList, setVideoList] = useState([]);
+  // const [searchText, setSearchText] = useState('Wizeline');
+  const searchText = 'JulioAstillero';
+  useEffect(() => {
+    // Did Mount and so far...
+    async function fetchVideos(searchTerm) {
+      try {
+        const { result } = await googleApi.client.youtube.search.list({
+          part: ['id', 'snippet'],
+          maxResults: 25,
+          q: searchTerm,
+        });
+        // look for videos only: https://developers-dot-devsite-v2-prod.appspot.com/youtube/v3/docs/search#resource
+        const videos = result.items.filter((video) => video.id.kind === 'youtube#video');
+        console.log('[Result:]', result);
+
+        setVideoList(videos);
+      } catch (error) {
+        console.error('Something went wrong with videos fetching!', error);
+        return null;
+      }
+    }
+
+    fetchVideos(searchText);
+  });
 
   return (
     <section className="homepage" ref={sectionRef}>
       <h1>Hello Mini-Challenge 3!</h1>
       {/* <p>You are searching for: {searchText}</p> */}
       {/* <p>Youtube API: {process.env.REACT_APP_YOUTUBE_API_KEY}</p> */}
-      <VideoList />
+      <VideoList videos={videoList} />
       {/* {authenticated ? (
         <>
           <h2>Good to have you back</h2>

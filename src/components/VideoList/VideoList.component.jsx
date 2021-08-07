@@ -3,8 +3,9 @@ import { VideoListContainer, VideoListTitle, Videos } from './VideoList.styled.c
 import VideoCard from '../VideoCard';
 import mockData from '../../mocks/youtube-videos-mock.json';
 
-function VideoList() {
-  const videos = mockData.items;
+function VideoList(props) {
+  // const videos = mockData.items;
+  const { videos } = props;
 
   return (
     <VideoListContainer>
